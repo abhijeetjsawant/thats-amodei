@@ -391,13 +391,13 @@ body{font-family:'Space Grotesk',sans-serif;color:var(--cream);display:flex;alig
     <div class="lv amore" id="amoreCard">
       <div class="n">AMORE MODE · ENDLESS CHORUS · +8% FASTER EVERY LOOP</div>
       <div class="t">🎵 THAT'S AMODEI</div>
-      <div class="c">The final chorus loops until you drop — each loop faster and higher-pitched. Build the case, cash the ★, parry the gavels; knock him down and the lobby re-funds him mid-song. <b>Load your track once — it saves on this device and auto-loads forever after.</b></div>
-      <div class="chips"><span class="chip v" id="amoreStat">LOAD YOUR LICENSED TRACK TO UNLOCK (ONE TIME)</span></div>
+      <div class="c">The final chorus loops until you drop — each loop faster and higher-pitched. Build the case, cash the ★, parry the gavels; knock him down and the lobby re-funds him mid-song. <b>The chart is timed to Dean Martin's “That's Amore” (~3:11) — load your own licensed copy once (an MP3 you own, or a hosted URL). Saved on this device, never uploaded; auto-loads forever after.</b></div>
+      <div class="chips"><span class="chip v" id="amoreStat">LOAD “THAT'S AMORE” (YOUR LICENSED COPY) TO UNLOCK</span></div>
       <div class="best" id="amoreBest"></div>
       <button class="btn sec" id="btnLoadTrack" style="margin-top:1.6cqh;font-size:2.6cqw;padding:1cqh 4cqw">LOAD TRACK (MP3)</button>
       <input type="file" id="trackFile" accept="audio/*" style="display:none">
       <div style="display:flex;gap:1.6cqw;margin-top:1.2cqh;align-items:stretch">
-        <input type="url" id="trackUrl" placeholder="…or paste your own hosted MP3 URL (auto-loads next time)"
+        <input type="url" id="trackUrl" placeholder="…or paste a hosted MP3 URL for “That's Amore” (auto-loads next time)"
           style="flex:1;background:#12100c;border:1px solid var(--line);border-radius:1.2cqw;color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:2.1cqw;padding:.8cqh 2cqw;min-width:0">
         <button class="btn sec" id="btnUrlLoad" style="margin:0;font-size:2.2cqw;padding:.8cqh 2.6cqw">AUTO</button>
       </div>
@@ -492,7 +492,7 @@ body{font-family:'Space Grotesk',sans-serif;color:var(--cream);display:flex;alig
       <li>Skipped orbs are <b>soft misses</b> — he mocks you, and his LOBBY meter feeds on it.</li>
       <li>Desktop keys: <b>D F J K</b> (any of them — two at once for double orbs). Timing: PERFECT −30/+40ms · GOOD −50/+80ms (late-friendly). <b>If everything suddenly misses,</b> a bad mic-check offset is stored — tap the "mic check … TAP TO RESET" line on the Docket.</li>
       <li>Motion status: <b id="vidstat">loading clips…</b></li>
-      <li><b>🎵 AMORE MODE:</b> the song's <b>final chorus, looping endlessly — each loop +8% faster and higher</b> until it's unplayable. Load your own licensed copy ONCE — it's <b>saved on this device</b> (never uploaded anywhere) and auto-loads every visit after; or paste a hosted MP3 URL. The recording itself is never part of this page — the game ships only beat-timing data mapped to that exact track. His OBJECTION windup muffles the record and the strike snaps it back open; knockdowns roll straight into the next, faster loop.</li>
+      <li><b>🎵 AMORE MODE:</b> the song's <b>final chorus, looping endlessly — each loop +8% faster and higher</b> until it's unplayable. Load your own licensed copy of Dean Martin's “That's Amore” ONCE — it's <b>saved on this device</b> (never uploaded anywhere) and auto-loads every visit after; or paste a hosted MP3 URL. The recording itself is never part of this page — the game ships only beat-timing data mapped to that exact track. His OBJECTION windup muffles the record and the strike snaps it back open; knockdowns roll straight into the next, faster loop.</li>
       <li><b>🎵 The whole hearing is in 3/4</b> — a crooner waltz that accelerates as the session runs long. He croons his claims on the call bars; the accompaniment dies to a lonely thump while the lobby holds an advantage; knockdowns get the full number. Preview it: <button class="btn sec" id="btnTestJingle" style="margin:0;padding:.6cqh 3cqw;font-size:2.4cqw">PLAY KO JINGLE</button></li>
     </ul>
     <h3>The receipts</h3>
@@ -1648,7 +1648,7 @@ $("amoreCard").addEventListener("click",()=>{
 });
 function nudgeLoadTrack(){
   const stat=$("amoreStat");
-  stat.textContent="↓ NO TRACK LOADED — TAP “LOAD TRACK (MP3)” OR PASTE AN MP3 URL BELOW";
+  stat.textContent="↓ LOAD “THAT'S AMORE” (DEAN MARTIN) — TAP “LOAD TRACK” OR PASTE ITS MP3 URL";
   stat.classList.add("need");
   const card=$("amoreCard");card.classList.remove("nudge");void card.offsetWidth;card.classList.add("nudge");
   ["btnLoadTrack","btnUrlLoad","trackUrl"].forEach(id=>{const el=$(id);if(!el)return;el.classList.remove("pulse");void el.offsetWidth;el.classList.add("pulse")});
