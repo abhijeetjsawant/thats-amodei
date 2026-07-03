@@ -74,6 +74,12 @@ body{font-family:'Space Grotesk',sans-serif;color:var(--cream);display:flex;alig
 .lv.amore .t{color:var(--y)}
 .lv.amore.ready{box-shadow:0 0 4cqw rgba(255,210,77,.25)}
 .lv.amore.ready .t{text-shadow:0 0 2cqw rgba(255,210,77,.5)}
+/* v14.6: "no track loaded" nudge — make it obvious where to add a track */
+.chip.need{color:var(--y);border-color:var(--y);font-weight:700}
+.lv.amore.nudge{animation:amoreNudge .45s}
+@keyframes amoreNudge{20%{transform:translateX(-1.4cqw)}45%{transform:translateX(1.1cqw)}70%{transform:translateX(-.6cqw)}90%{transform:translateX(.3cqw)}}
+#btnLoadTrack.pulse,#btnUrlLoad.pulse,#trackUrl.pulse{animation:trackPulse 1s ease-out 2}
+@keyframes trackPulse{0%,100%{box-shadow:0 0 0 rgba(255,210,77,0)}35%{box-shadow:0 0 3.2cqw rgba(255,210,77,.9);border-color:var(--y)}}
 
 /* ---------- GAME: boss-centric ---------- */
 #scr-game{background:#0f0d0a}
@@ -770,6 +776,8 @@ async function idbGet(){try{const db=await idbOpen();const ab=await new Promise(
   const q=tx.objectStore("t").get("track");q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)});db.close();return ab}catch(e){return null}}
 function songCardReady(msg){
   $("amoreStat").textContent=msg;
+  $("amoreStat").classList.remove("need");
+  ["btnLoadTrack","btnUrlLoad","trackUrl"].forEach(id=>{const e=$(id);if(e)e.classList.remove("pulse")});
   $("amoreCard").classList.add("ready");
   const best=store.get("pi_amore_best",null);
   if(best)$("amoreBest").textContent="BEST · R"+(best.kd!=null?best.kd+1:1)+" · "+(best.score!=null?best.score:best);
@@ -1633,9 +1641,20 @@ $("trackFile").addEventListener("change",async e=>{
 $("amoreCard").addEventListener("click",()=>{
   if(songBuf){startRun("amore");return}
   audioInit();actx.resume();
-  $("amoreStat").textContent="LOADING…"; /* v14.5: wait for the boot/built-in decode then start — was a silent no-op if tapped early */
-  Promise.resolve(songBoot).then(()=>ensureBuiltinSong()).then(()=>{if(songBuf)startRun("amore");else $("amoreStat").textContent="LOAD YOUR LICENSED TRACK TO UNLOCK (ONE TIME)"});
+  Promise.resolve(songBoot).then(()=>ensureBuiltinSong()).then(()=>{
+    if(songBuf){startRun("amore");return}
+    nudgeLoadTrack(); /* v14.6: no track yet — a clear, unmissable prompt instead of a silent no-op */
+  });
 });
+function nudgeLoadTrack(){
+  const stat=$("amoreStat");
+  stat.textContent="↓ NO TRACK LOADED — TAP “LOAD TRACK (MP3)” OR PASTE AN MP3 URL BELOW";
+  stat.classList.add("need");
+  const card=$("amoreCard");card.classList.remove("nudge");void card.offsetWidth;card.classList.add("nudge");
+  ["btnLoadTrack","btnUrlLoad","trackUrl"].forEach(id=>{const el=$(id);if(!el)return;el.classList.remove("pulse");void el.offsetWidth;el.classList.add("pulse")});
+  try{$("btnLoadTrack").scrollIntoView({behavior:"smooth",block:"center"})}catch(e){}
+  try{S.tick(actx.currentTime)}catch(e){}
+}
 let urlTried=false;
 async function loadFromUrl(url){
   audioInit();actx.resume();$("amoreStat").textContent="FETCHING…";
