@@ -5,47 +5,19 @@ A public-policy rhythm fighter. The claims are real. The slaps are arguments.
 WHAT'S IN HERE, AND WHERE EACH FILE MAY GO
 ═══════════════════════════════════════════════════════════════════
 
-THATS-AMODEI-play-me.html          ← YOUR copy. Song built in — just open
+THATS-AMODEI-play-me.html          ←  just open
                                       it in any browser (phone or desktop)
                                       and play. Works fully offline.
                                       Share person-to-person only
                                       (AirDrop / Drive / WhatsApp).
-                                      DO NOT host on a public URL — it
-                                      contains the copyrighted recording.
-
-web-share/index.html               ← The PUBLIC copy (same game, no
-                                      recording). Safe for GitHub Pages,
-                                      itch.io, any public link. Amore Mode
-                                      asks each player to load their own
-                                      MP3 once (it saves on their device).
-
-web-share/PUBLIC-INPUT-store-safe.html
-                                   ← Same game under the archetype title
-                                      "PUBLIC INPUT" with the composite
-                                      disclaimer. Use for app stores or
-                                      anywhere maximum caution is wanted.
+                                      DO NOT host on a public URL —
 
 cards/share-card-16x9.jpg          ← Attach to tweets/chats (landscape).
 cards/story-card-9x16.jpg          ← WhatsApp status / stories (vertical).
 
-extras/trailer-private-real-song.mp4
-                                   ← Beat-matched gameplay trailer. It
-                                      contains the real recording:
-                                      private/preview use only.
 extras/design-bible.html           ← The Pattern — all game-design laws.
 extras/research-report.html        ← The original claims/rebuttals research.
 
-═══════════════════════════════════════════════════════════════════
-PUT IT ON GITHUB PAGES (free hosting, ~60 seconds)
-═══════════════════════════════════════════════════════════════════
-1. github.com → New repository → name: thats-amodei → Public → Create
-2. "uploading an existing file" → drop web-share/index.html → Commit
-3. Settings → Pages → Source: Deploy from branch → main / root → Save
-4. Your game is live at  https://<your-username>.github.io/thats-amodei/
-   (first deploy takes a minute or two)
-
-Current hosted link (already live):
-https://pub.hyperagent.com/p/i7O1oNIwYxoT6vI1UDmCwq7jwuU952EQPNhc7tOhI-4
 
 ═══════════════════════════════════════════════════════════════════
 THE GAME IN ONE PARAGRAPH
@@ -76,4 +48,3 @@ RECEIPTS & DISCLAIMERS
 • Built end-to-end with Fable 5 (Anthropic) — research, design, engine,
   beat-mapping, QA bots, and art direction in one conversation.
 
-v14.4 · 2026 · headphones recommended
