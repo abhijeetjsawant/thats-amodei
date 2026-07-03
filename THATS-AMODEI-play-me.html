@@ -1638,7 +1638,8 @@ $("trackFile").addEventListener("change",async e=>{
     await adoptSong(ab,true);
   }catch(err){songBuf=null;$("amoreStat").textContent="COULD NOT DECODE — TRY AN MP3/M4A"}
 });
-$("amoreCard").addEventListener("click",()=>{
+$("amoreCard").addEventListener("click",(e)=>{
+  if(e.target&&e.target.closest&&e.target.closest("#btnLoadTrack,#trackFile,#trackUrl,#btnUrlLoad"))return; /* v14.6: the hidden file input lives inside the card, so its click() bubbles here — do not nudge when the load controls are used */
   if(songBuf){startRun("amore");return}
   audioInit();actx.resume();
   Promise.resolve(songBoot).then(()=>ensureBuiltinSong()).then(()=>{
