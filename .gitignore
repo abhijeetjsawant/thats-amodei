@@ -1,0 +1,4 @@
+# local backups and test artifacts
+*.bak
+.playwright-mcp/
+final-title.jpeg
